@@ -9,14 +9,28 @@ public class Tester {
 
         System.out.print("Please enter number of tickets: ");
         int amount = scanner.nextInt();
-        ticket.setTotalAmount(amount);
+        do {
+            ticket.setTotalAmount(amount);
 
-        System.out.print("How many round-trip tickets: ");
+            System.out.print("How many round-trip tickets: ");
+            int round = checkRound(scanner, amount);
+            ticket.setRoundAmount(round);
+            ticket.printOut();
+
+            System.out.print("Please enter number of tickets( Or enter \"-1\" to quit system): ");
+            amount = scanner.nextInt();
+        } while (amount != -1);
+
+        System.out.println("Thanks for your order~");
+    }
+
+    private static int checkRound(Scanner scanner, int amount) {
         int round = scanner.nextInt();
-        ticket.setRoundAmount(round);
-
-        System.out.println("Total tickets: " + amount);
-        System.out.println("Round-trip: " + round);
-        System.out.println("Total: " + ticket.finalPrice());
+        while (round > amount) {
+            System.out.println("Amount of round-trip tickets can't higher than total amount, please enter again");
+            System.out.print("How many round-trip tickets: ");
+            round = scanner.nextInt();
+        }
+        return round;
     }
 }

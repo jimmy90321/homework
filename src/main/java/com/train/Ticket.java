@@ -14,7 +14,15 @@ public class Ticket {
         this.roundAmount = roundAmount;
     }
 
-    public int finalPrice() {
+    private int getFinalPrice() {
         return price * (totalAmount - roundAmount) + (int) (price * roundAmount * 2 * discount);
+    }
+
+    public void printOut(){
+        System.out.println("=========================================================");
+        System.out.println("Total tickets: " + totalAmount);
+        System.out.println("Round-trip: " + roundAmount);
+        System.out.println("Total: " + getFinalPrice());
+        System.out.println("=========================================================");
     }
 }
